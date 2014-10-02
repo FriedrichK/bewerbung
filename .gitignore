@@ -1,0 +1,11 @@
+# Linux
+*~
+
+# Python
+*.pyc
+venv/
+
+# Sublime Text
+bewerbung.sublime-project
+bewerbung.sublime-workspace
+
