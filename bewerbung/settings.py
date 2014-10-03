@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+import dotenv
+dotenv.read_dotenv()
+
+from getenv import env
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -20,11 +25,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'z2j+v!m#1!sc3r+$g0zr&s9+6yzxtzo-c5q712fq2wu3m5tm)e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
+if not DEBUG:
+    ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -82,3 +89,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
